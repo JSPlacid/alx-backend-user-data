@@ -2,6 +2,7 @@
 """
 A python module for handling personal data
 """
+
 from typing import List
 import re
 import logging
