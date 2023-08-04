@@ -1,27 +1,17 @@
 #!/usr/bin/env python3
-"""
-Encrypt module
-"""
+""" Encrypting pswds with bcrypt """
 import bcrypt
 
 
 def hash_password(password: str) -> bytes:
-    """ Returns a salted, hashed password, which is a byte string """
-    encoded = password.encode()
-    hashed = bcrypt.hashpw(encoded, bcrypt.gensalt())
-
-    return hashed
+    """ Takes in string arg, converts to unicode
+    Returns salted, hashed pswd as bytestring
+    """
+    return bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
 
 
 def is_valid(hashed_password: bytes, password: str) -> bool:
-    """ Validates the provided password matches the hashed password """
-    valid = False
-    encoded = password.encode()
-    if bcrypt.checkpw(encoded, hashed_password):
-        valid = True
-    return valid
-
-
-password = "MyAmazingPassw0rd"
-print(hash_password(password))
-print(hash_password(password))
+    """ Checks if hashed and unhashed pswds are same
+    Returns bool
+    """
+    return bcrypt.checkpw(password.encode('utf-8'), hashed_password)
