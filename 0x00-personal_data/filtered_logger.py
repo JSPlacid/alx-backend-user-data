@@ -92,3 +92,4 @@ class RedactingFormatter(logging.Formatter):
 
 if __name__ == '__main__':
     main()
+    
